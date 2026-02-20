@@ -30,9 +30,9 @@
       }
     </style>
   </head>
-<body class="bg-light">
+  <body class="bg-light">
 
-  <div class="container-lg">
+    <div class="container-lg">
       <h1 class="text-center my-4">My Todo App</h1>
       
       <div class="bg-white rounded border shadow-sm p-3">
@@ -64,9 +64,11 @@
             <label for="attachmentInput" class="form-label">Attachments</label>
             <div class="input-group">
               <input class="form-control" type="file" id="attachmentInput" multiple />
-              <button class="btn btn-outline-secondary" type="btn-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-              </svg></button>
+              <button class="btn btn-outline-secondary" type="btn-close">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                </svg>
+              </button>
             </div>
           </div>
           <div class="border rounded p-3 mb-3" style="min-height: 60px;">
@@ -80,6 +82,7 @@
           </button>
         </form>
       </div>
+
       <div class="bg-white rounded border shadow-sm mt-4 mb-5">
         <div class="d-flex justify-content-between align-items-center p-3">
           <h2 class="h5 mb-0">Todos</h2>
@@ -100,13 +103,15 @@
         <hr class="m-0">
 
         <div class="container-lg">
-          <div class="row rounded border mx-1 my-3 py-2 pt-0 px-1 justify-content-between">
-            <div class="col-auto pt-2">
+          <div class="row rounded border mx-1 my-3 py-2 pt-0 px-1">
+            <div class="col-auto order-1 pt-2 me-auto">
               <p class="fw-semibold m-0">Example Todo</p> 
-              <p class="small my-1 text-secondary">Description goes here</p>
+              <p class="my-1 small text-secondary">Description goes here</p>
             </div>
-            <div class="col-auto py-2 text-end small text-secondary">
-              <div class="d-none d-sm-inline">Created: <span class="me-2 text-nowrap" id="createdDateDesktop">2025-07-01</span></div>
+            <div class="col-sm-auto order-3 order-sm-2 mb-1 pt-sm-1 mt-sm-1 pe-0 small text-secondary">
+              Created: <span class="text-nowrap" id="createdDateDesktop">2025-07-01</span>
+            </div>
+            <div class="col-auto order-2 order-sm-3 py-2 text-end">
               <div class="btn-group" aria-label="Edit">
                 <button type="button" class="btn btn-sm btn-outline-success" id="acceptBtn">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
@@ -127,12 +132,9 @@
                 </button>
               </div>
             </div>
-            <div class="col-12 small text-secondary">
+            <div class="col-12 order-4 small text-secondary">
               <div class="row gx-2">
                 <div class="col-sm-auto">
-                  <div class="d-block d-sm-none mb-1">
-                    Created: <span class="me-2 text-nowrap" id="createdDateMobile">2025-07-01</span>
-                  </div>
                   <div class="d-flex align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="me-1" viewBox="0 0 16 16">
                       <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
@@ -155,10 +157,12 @@
                     2 attachments
                   </span>
                 </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
   </body>
