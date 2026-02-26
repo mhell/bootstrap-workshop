@@ -13,6 +13,10 @@ h1 {
   color: var(--bs-secondary-color);
 }
 
+.bi-file-earmark::before {
+  padding-right: .5rem;
+}
+
 @media (min-width: 1200px) {
   .container-lg {
       max-width: 1000px;

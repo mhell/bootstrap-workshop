@@ -1,8 +1,6 @@
 import TodoItem from "./TodoItem.js";
 
-const todoForm = document.getElementById("todoForm");
-
-todoForm.addEventListener("submit", event => {
+document.getElementById("todoForm").addEventListener("submit", event => {
   event.preventDefault();
   const formData = new FormData(event.target); 
   const todoItem = new TodoItem(
@@ -13,7 +11,18 @@ todoForm.addEventListener("submit", event => {
     formData.getAll("attachments")
   );
   addTodoItemToUI(todoItem);
-  todoForm.reset();
+  event.target.reset();
+});
+
+document.getElementById("attachmentInput").addEventListener("change", event => {
+  const fileList = event.target.files;
+  const attachmentList = document.getElementById("attachmentList");
+  for (let i = 0; i < fileList.length; i++) {
+    const listItem = document.createElement("li");
+    listItem.classList.add("list-group-item", "border-0", "bi", "bi-file-earmark");
+    listItem.textContent = fileList[i].name;
+    attachmentList.appendChild(listItem);
+  }
 });
 
 function addTodoItemToUI(todoItem) {
