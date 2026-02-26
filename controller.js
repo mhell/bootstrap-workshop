@@ -12,6 +12,10 @@ document.getElementById("todoForm").addEventListener("submit", event => {
   );
   addTodoItemToUI(todoItem);
   event.target.reset();
+  // Show the todo list if it's hidden
+  if(document.getElementById("todoHolder").classList.contains("d-none")) {
+    document.getElementById("todoHolder").classList.remove("d-none");
+  }
 });
 
 document.getElementById("attachmentInput").addEventListener("change", event => {

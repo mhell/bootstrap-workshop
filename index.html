@@ -50,9 +50,7 @@
             <div class="input-group">
               <input class="form-control" type="file" id="attachmentInput" multiple name="attachments" />
               <button class="btn btn-outline-secondary" type="btn-close">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-                </svg>
+                <i class="bi bi-x-lg"></i>
               </button>
             </div>
           </div>
@@ -61,27 +59,21 @@
              <ul id="attachmentList" class="list-group"></ul>
           </div>
           <button id="btnAddTodo" type="submit" class="btn btn-primary d-flex align-items-center gap-1 ms-auto">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
-            </svg>
+            <i class="bi bi-plus-lg"></i>
             Add Todo
           </button>
         </form>
       </div>
 
-      <div class="card border shadow-sm mt-4 mb-5">
+      <div class="card border shadow-sm mt-4 mb-5 d-none" id="todoHolder">
         <div class="card-header bg-white d-flex justify-content-between align-items-center p-3"><!-- no padding in sketch -->
           <h2 class="h5 mb-0">Todos</h2>
           <div class="btn-group" aria-label="Filter">
             <button type="button" class="btn btn-sm btn-outline-secondary btnFilter">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
-              </svg>
+              <i class="bi bi-funnel"></i>
             </button>
             <button type="button" class="btn btn-sm btn-outline-secondary btnSort">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
-              </svg>
+              <i class="bi bi-sort-down"></i>
             </button>
           </div>
         </div>
@@ -101,21 +93,14 @@
                   <div class="col-auto order-2 mb-1 order-sm-3 text-end">
                     <div class="btn-group" aria-label="Edit">
                       <button type="button" class="btn btn-sm btn-outline-success btnAccept">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-                          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
-                        </svg>
+                        <i class="bi bi-check-lg"></i>
                       </button>
                       <button type="button" class="btn btn-sm btn-outline-primary btnEdit">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                          <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
-                        </svg>
+                        <i class="bi bi-pencil"></i>
                       </button>
                       </button>
                       <button type="button" class="btn btn-sm btn-outline-danger btnDelete">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                        </svg>
+                        <i class="bi bi-trash"></i>
                       </button>
                     </div>
                   </div>
@@ -123,24 +108,17 @@
                     <div class="row gx-2">
                       <div class="col-sm-auto">
                         <div class="d-flex align-items-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="me-1" viewBox="0 0 16 16">
-                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
-                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
-                          </svg>
+                            <i class="bi bi-calendar-event me-1"></i>
                           Due:<span class="ms-1 text-nowrap todoDueDate">2025-07-10</span>
                         </div>
                       </div>
                       <div class="col-sm-auto mt-2 mt-sm-0 d-flex align-items-center gap-2">
-                        <span class="name badge text-bg-info text-white py-1 todoAssigneeBadge">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="align-text-bottom" viewBox="0 0 16 16">
-                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
-                          </svg>
+                        <span class="badge text-bg-info text-white py-1 d-flex align-items-center todoAssigneeBadge">
+                          <i class="bi bi-person me-1"></i>
                           <span class="todoAssignee">John Doe</span>
                         </span>
-                        <span class="todoAttachments badge text-bg-secondary text-white py-1 todoAttachmentsBadge">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="align-text-bottom" viewBox="0 0 16 16">
-                            <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z"/>
-                          </svg>
+                        <span class="badge text-bg-secondary text-white py-1 d-flex align-items-center todoAttachmentsBadge">
+                          <i class="bi bi-paperclip me-1"></i>
                           <span class="todoAttachements">2 attachments</span>
                         </span>
                       </div>
