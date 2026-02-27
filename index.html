@@ -62,7 +62,7 @@
           <div class="mb-3">
             <label for="attachmentInput" class="form-label">Attachments</label>
             <div class="input-group">
-              <input class="form-control attachmentInput" type="file" multiple name="attachments" />
+              <input id="attachmentInput" class="form-control attachments" type="file" multiple name="attachments" />
               <button class="btn btn-outline-secondary" type="button" id="clearAttachments">
                 <i class="bi bi-x-lg"></i>
               </button>
@@ -72,7 +72,7 @@
             <!-- Attachment previews will go here later -->
              <ul class="list-group attachmentList"></ul>
           </div>
-          <button id="btnAddTodo" type="submit" class="btn btn-primary d-flex align-items-center gap-1 ms-auto">
+          <button type="submit" class="btn btn-primary d-flex align-items-center gap-1 ms-auto">
             <i class="bi bi-plus-lg"></i>
             Add Todo
           </button>

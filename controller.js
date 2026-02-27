@@ -24,16 +24,15 @@ document.getElementById("todoForm").addEventListener("submit", event => {
 });
 
 // Handle attachments preview
-document.querySelector(".attachmentInput").addEventListener("change", event => {
+document.querySelector("#todoForm .attachments").addEventListener("change", event => {
   updateAttachmentList(event.target.files, event.target.form);
 });
 
 function addTodoItem(todoItem) {
   // Add the new todo item to the in-memory list
   todoItems.push(todoItem);
-
+  // Add the new todo item to the DOM using the template
   const todoListItem = document.getElementById("todoItemTemplate").content.cloneNode(true);
-  // Populate the template with the todo item data
   todoListItem.id = "todoItem-" + todoItem.id;
   todoListItem.querySelector(".todoTitle").textContent = todoItem.title;
   todoListItem.querySelector(".todoDescription").textContent = todoItem.description;
@@ -62,15 +61,22 @@ function addTodoItem(todoItem) {
 }
 
 function removeTodoItem(todoItem) {
+  // Remove the todo item from the in-memory list
   todoItems.splice(todoItems.indexOf(todoItem), 1);
+  // Remove the todo item from the DOM
   document.getElementById("todoItem-"+todoItem.id).remove();
 }
 
 function editTodoItem(todoItem) {
+  // Create a copy of the form template for editing
   const editForm = document.getElementById("todoForm").cloneNode(true);
   editForm.id = "editForm";
   const modalBody = document.querySelector("#editModal .modal-body");
   modalBody.innerHTML = ""; // Clear any previous form
+  const button = editForm.querySelector("button[type='submit']");
+  button.textContent = "Save Changes";
+  button.setAttribute("data-bs-dismiss", "modal");
+  button.setAttribute("data-bs-target", "#editModal");
   modalBody.appendChild(editForm);
   // Populate the form with the existing todo item data
   editForm.elements["title"].value = todoItem.title;
@@ -79,16 +85,26 @@ function editTodoItem(todoItem) {
   editForm.elements["assignee"].value = todoItem.assignee;
   updateAttachmentList(todoItem.attachments, editForm);
   // Handle attachments preview
-  editForm.querySelector(".attachmentInput").addEventListener("change", event => {
+  editForm.querySelector(".attachments").addEventListener("change", event => {
     updateAttachmentList(event.target.files, editForm);
   });
-
   // Handle form submission to update the todo item
+  editForm.addEventListener("submit", event => {
+    event.preventDefault();
+    todoItem.title = editForm.elements["title"].value;
+    todoItem.description = editForm.elements["description"].value;
+    todoItem.dueDate = new Date(editForm.elements["dueDate"].value);
+    todoItem.assignee = editForm.elements["assignee"].value;
+    todoItem.attachments = [ ...todoItem.attachments, ...editForm.querySelector(".attachments").files];
+    removeTodoItem(todoItem);
+    addTodoItem(todoItem);
+  });
 }
 
 function updateAttachmentList(fileList, form) {
   const attachmentList = form.querySelector("ul");
   for (let i = 0; i < fileList.length; i++) {
+    if (fileList[i].size === 0) continue; // Skip empty files
     const listItem = document.createElement("li");
     listItem.classList.add("list-group-item", "border-0", "bi", "bi-file-earmark");
     listItem.textContent = fileList[i].name;
