@@ -15,6 +15,20 @@
   </head>
   <body class="bg-light">
 
+    <div class="modal fade" tabindex="-1" aria-hidden="true" id="editModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Todo Item</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- edit todo item form cloned here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container-lg">
       <h1 class="text-center my-4">My Todo App</h1>
       
@@ -48,15 +62,15 @@
           <div class="mb-3">
             <label for="attachmentInput" class="form-label">Attachments</label>
             <div class="input-group">
-              <input class="form-control" type="file" id="attachmentInput" multiple name="attachments" />
-              <button class="btn btn-outline-secondary" type="btn-close">
+              <input class="form-control attachmentInput" type="file" multiple name="attachments" />
+              <button class="btn btn-outline-secondary" type="button" id="clearAttachments">
                 <i class="bi bi-x-lg"></i>
               </button>
             </div>
           </div>
           <div class="border rounded p-3 mb-3" style="min-height: 60px;">
             <!-- Attachment previews will go here later -->
-             <ul id="attachmentList" class="list-group"></ul>
+             <ul class="list-group attachmentList"></ul>
           </div>
           <button id="btnAddTodo" type="submit" class="btn btn-primary d-flex align-items-center gap-1 ms-auto">
             <i class="bi bi-plus-lg"></i>
@@ -80,7 +94,7 @@
 
         <ul id="todoList" class="list-group m-3">
           <template id="todoItemTemplate">
-            <li class="list-group-item todoListItem">
+            <li id="todoItem-0" class="list-group-item todoListItem">
               <div class="container-lg px-0">
                 <div class="row">
                   <div class="col-auto order-1 me-auto">
@@ -95,7 +109,7 @@
                       <button type="button" class="btn btn-sm btn-outline-success btnAccept">
                         <i class="bi bi-check-lg"></i>
                       </button>
-                      <button type="button" class="btn btn-sm btn-outline-primary btnEdit">
+                      <button type="button" class="btn btn-sm btn-outline-primary btnEdit" data-bs-toggle="modal" data-bs-target="#editModal">
                         <i class="bi bi-pencil"></i>
                       </button>
                       </button>
