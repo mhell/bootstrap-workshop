@@ -33,7 +33,7 @@ function addTodoItem(todoItem) {
   todoItems.push(todoItem);
   // Add the new todo item to the DOM using the template
   const todoListItem = document.getElementById("todoItemTemplate").content.cloneNode(true);
-  todoListItem.id = "todoItem-" + todoItem.id;
+  todoListItem.firstElementChild.id = "todoItem-"+todoItem.id;
   todoListItem.querySelector(".todoTitle").textContent = todoItem.title;
   todoListItem.querySelector(".todoDescription").textContent = todoItem.description;
   todoListItem.querySelector(".todoDueDate").textContent = todoItem.dueDate.toISOString().split('T')[0];
@@ -91,13 +91,16 @@ function editTodoItem(todoItem) {
   // Handle form submission to update the todo item
   editForm.addEventListener("submit", event => {
     event.preventDefault();
-    todoItem.title = editForm.elements["title"].value;
-    todoItem.description = editForm.elements["description"].value;
-    todoItem.dueDate = new Date(editForm.elements["dueDate"].value);
-    todoItem.assignee = editForm.elements["assignee"].value;
-    todoItem.attachments = [ ...todoItem.attachments, ...editForm.querySelector(".attachments").files];
+    const formData = new FormData(event.target); 
+    todoItem.title = formData.get("title");
+    todoItem.description = formData.get("description");
+    todoItem.dueDate = new Date(formData.get("dueDate"));
+    todoItem.assignee = formData.get("assignee");
+    todoItem.attachments = [ ...todoItem.attachments, ...formData.getAll("attachments")].filter(file => file.size > 0);
     removeTodoItem(todoItem);
     addTodoItem(todoItem);
+
+    console.log("Updated todo item:", todoItem);
   });
 }
 

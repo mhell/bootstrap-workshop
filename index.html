@@ -93,57 +93,60 @@
         </div>
 
         <ul id="todoList" class="list-group m-3">
-          <template id="todoItemTemplate">
-            <li id="todoItem-0" class="list-group-item todoListItem">
-              <div class="container-lg px-0">
-                <div class="row">
-                  <div class="col-auto order-1 me-auto">
-                    <p class="fw-semibold m-0 todoTitle">Example Todo 1</p> 
-                    <p class="my-1 small text-secondary todoDescription">Description goes here</p>
-                  </div>
-                  <div class="col-sm-auto order-3 order-sm-2 mb-1 pe-0 small text-secondary">
-                    Created: <span class="text-nowrap todoCreatedDate">2025-07-01</span>
-                  </div>
-                  <div class="col-auto order-2 mb-1 order-sm-3 text-end">
-                    <div class="btn-group" aria-label="Edit">
-                      <button type="button" class="btn btn-sm btn-outline-success btnAccept">
-                        <i class="bi bi-check-lg"></i>
-                      </button>
-                      <button type="button" class="btn btn-sm btn-outline-primary btnEdit" data-bs-toggle="modal" data-bs-target="#editModal">
-                        <i class="bi bi-pencil"></i>
-                      </button>
-                      </button>
-                      <button type="button" class="btn btn-sm btn-outline-danger btnDelete">
-                        <i class="bi bi-trash"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="col-12 order-4 small text-secondary">
-                    <div class="row gx-2">
-                      <div class="col-sm-auto">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-calendar-event me-1"></i>
-                          Due:<span class="ms-1 text-nowrap todoDueDate">2025-07-10</span>
-                        </div>
-                      </div>
-                      <div class="col-sm-auto mt-2 mt-sm-0 d-flex align-items-center gap-2">
-                        <span class="badge text-bg-info text-white py-1 d-flex align-items-center todoAssigneeBadge">
-                          <i class="bi bi-person me-1"></i>
-                          <span class="todoAssignee">John Doe</span>
-                        </span>
-                        <span class="badge text-bg-secondary text-white py-1 d-flex align-items-center todoAttachmentsBadge">
-                          <i class="bi bi-paperclip me-1"></i>
-                          <span class="todoAttachements">2 attachments</span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-           </li>
-          </template>
+          <!-- todo items will be added here later -->
         </ul>
       </div>
     </div>
+
+    <template id="todoItemTemplate">
+      <li id="todoItem-0" class="list-group-item todoListItem">
+        <div class="container-lg px-0">
+          <div class="row">
+            <div class="col-auto order-1 me-auto">
+              <p class="fw-semibold m-0 todoTitle">Example Todo 1</p> 
+              <p class="my-1 small text-secondary todoDescription">Description goes here</p>
+            </div>
+            <div class="col-sm-auto order-3 order-sm-2 mb-1 pe-0 small text-secondary">
+              Created: <span class="text-nowrap todoCreatedDate">2025-07-01</span>
+            </div>
+            <div class="col-auto order-2 mb-1 order-sm-3 text-end">
+              <div class="btn-group" aria-label="Edit">
+                <button type="button" class="btn btn-sm btn-outline-success btnAccept">
+                  <i class="bi bi-check-lg"></i>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-primary btnEdit" data-bs-toggle="modal" data-bs-target="#editModal">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger btnDelete">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-12 order-4 small text-secondary">
+              <div class="row gx-2">
+                <div class="col-sm-auto">
+                  <div class="d-flex align-items-center">
+                      <i class="bi bi-calendar-event me-1"></i>
+                    Due:<span class="ms-1 text-nowrap todoDueDate">2025-07-10</span>
+                  </div>
+                </div>
+                <div class="col-sm-auto mt-2 mt-sm-0 d-flex align-items-center gap-2">
+                  <span class="badge text-bg-info text-white py-1 d-flex align-items-center todoAssigneeBadge">
+                    <i class="bi bi-person me-1"></i>
+                    <span class="todoAssignee">John Doe</span>
+                  </span>
+                  <span class="badge text-bg-secondary text-white py-1 d-flex align-items-center todoAttachmentsBadge">
+                    <i class="bi bi-paperclip me-1"></i>
+                    <span class="todoAttachements">2 attachments</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+     </li>
+    </template>
+
   </body>
 </html>
