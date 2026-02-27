@@ -11,6 +11,7 @@ class TodoItem {
     this.assignee = assignee;
     this.attachments = attachments;
     this.createdDate = new Date();
+    this.completed = false;
   }
 }
 

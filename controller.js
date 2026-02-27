@@ -41,7 +41,11 @@ function addTodoItem(todoItem) {
   const todoListItem = document.getElementById("todoItemTemplate").content.cloneNode(true);
   todoListItem.firstElementChild.id = "todoItem-"+todoItem.id;
   fillTodoListItem(todoListItem, todoItem);
-  // Add event listeners for delete and edit buttons
+  // Add event listeners for buttons
+  todoListItem.querySelector(".btnCompleted").addEventListener("click", (event) => {
+    completeTodoItem(todoItem);
+    event.currentTarget.classList.toggle("text-bg-success", todoItem.completed);
+  });
   todoListItem.querySelector(".btnDelete").addEventListener("click", () => {
     removeTodoItem(todoItem);
   });
@@ -98,6 +102,11 @@ function editTodoItem(todoItem) {
   });
 }
 
+function completeTodoItem(todoItem) {
+  todoItem.completed = !todoItem.completed;
+  console.log(todoItem);
+}
+
 function updateAttachmentList(fileList, form) {
   const attachmentList = form.querySelector("ul");
   for (let i = 0; i < fileList.length; i++) {
@@ -130,5 +139,6 @@ function fillTodoListItem(todoListItem, todoItem) {
     todoListItem.querySelector(".todoAttachements").textContent = todoItem.attachments.length + " attachment" + (todoItem.attachments.length > 1 ? "s" : "");
     todoListItem.querySelector(".todoAttachmentsBadge").classList.remove("d-none");
   }
+  todoListItem.querySelector(".btnCompleted").classList.toggle("text-bg-success", todoItem.completed);
   todoListItem.querySelector(".todoCreatedDate").textContent = todoItem.createdDate.toISOString().split('T')[0];
 }
