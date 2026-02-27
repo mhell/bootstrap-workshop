@@ -13,6 +13,7 @@ document.getElementById("todoForm").addEventListener("submit", event => {
     formData.get("assignee"),
     formData.getAll("attachments")
   );
+  // Reset the form
   event.target.reset();
   event.target.querySelector(".attachmentList").innerHTML = "";
   // Add the new todo item
@@ -36,28 +37,14 @@ document.querySelector("#todoForm .clearAttachments").addEventListener("click", 
 function addTodoItem(todoItem) {
   // Add the new todo item to the in-memory list
   todoItems.push(todoItem);
-  // Add the new todo item to the DOM using the template
+  // Use the template to create a new todo item element
   const todoListItem = document.getElementById("todoItemTemplate").content.cloneNode(true);
   todoListItem.firstElementChild.id = "todoItem-"+todoItem.id;
-  todoListItem.querySelector(".todoTitle").textContent = todoItem.title;
-  todoListItem.querySelector(".todoDescription").textContent = todoItem.description;
-  todoListItem.querySelector(".todoDueDate").textContent = todoItem.dueDate.toISOString().split('T')[0];
-  if (todoItem.assignee !== "0") {
-    todoListItem.querySelector(".todoAssignee").textContent = todoItem.assignee;
-  } else {
-    todoListItem.querySelector(".todoAssigneeBadge").classList.add("d-none");
-  }
-  if (todoItem.attachments.length === 0 || todoItem.attachments.length === 1 && todoItem.attachments[0].size === 0) {  
-    todoListItem.querySelector(".todoAttachmentsBadge").classList.add("d-none");
-  } else {
-    todoListItem.querySelector(".todoAttachements").textContent = todoItem.attachments.length + " attachment" + (todoItem.attachments.length > 1 ? "s" : "");
-  }
-  todoListItem.querySelector(".todoCreatedDate").textContent = todoItem.createdDate.toISOString().split('T')[0];
-  // Add event listener for delete button
-  todoListItem.querySelector(".btnDelete").addEventListener("click",  () => {
+  fillTodoListItem(todoListItem, todoItem);
+  // Add event listeners for delete and edit buttons
+  todoListItem.querySelector(".btnDelete").addEventListener("click", () => {
     removeTodoItem(todoItem);
   });
-  // Add event listener for edit button
   todoListItem.querySelector(".btnEdit").addEventListener("click", () => {
     editTodoItem(todoItem);
   });
@@ -107,10 +94,7 @@ function editTodoItem(todoItem) {
     todoItem.dueDate = new Date(formData.get("dueDate"));
     todoItem.assignee = formData.get("assignee");
     todoItem.attachments = [ ...todoItem.attachments, ...formData.getAll("attachments")].filter(file => file.size > 0);
-    removeTodoItem(todoItem);
-    addTodoItem(todoItem);
-
-    console.log("Updated todo item:", todoItem);
+    fillTodoListItem(document.getElementById("todoItem-"+todoItem.id), todoItem);
   });
 }
 
@@ -128,4 +112,23 @@ function updateAttachmentList(fileList, form) {
 function clearAttachments(form) {
   form.querySelector(".attachments").value = "";
   form.querySelector(".attachmentList").innerHTML = "";
+}
+
+function fillTodoListItem(todoListItem, todoItem) {
+  todoListItem.querySelector(".todoTitle").textContent = todoItem.title;
+  todoListItem.querySelector(".todoDescription").textContent = todoItem.description;
+  todoListItem.querySelector(".todoDueDate").textContent = todoItem.dueDate.toISOString().split('T')[0];
+  if (todoItem.assignee !== "0") {
+    todoListItem.querySelector(".todoAssignee").textContent = todoItem.assignee;
+    todoListItem.querySelector(".todoAssigneeBadge").classList.remove("d-none");
+  } else {
+    todoListItem.querySelector(".todoAssigneeBadge").classList.add("d-none");
+  }
+  if (todoItem.attachments.length === 0 || todoItem.attachments.length === 1 && todoItem.attachments[0].size === 0) {
+    todoListItem.querySelector(".todoAttachmentsBadge").classList.add("d-none");
+  } else {
+    todoListItem.querySelector(".todoAttachements").textContent = todoItem.attachments.length + " attachment" + (todoItem.attachments.length > 1 ? "s" : "");
+    todoListItem.querySelector(".todoAttachmentsBadge").classList.remove("d-none");
+  }
+  todoListItem.querySelector(".todoCreatedDate").textContent = todoItem.createdDate.toISOString().split('T')[0];
 }
