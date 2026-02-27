@@ -28,6 +28,11 @@ document.querySelector("#todoForm .attachments").addEventListener("change", even
   updateAttachmentList(event.target.files, event.target.form);
 });
 
+// Handle clear attachments button
+document.querySelector("#todoForm .clearAttachments").addEventListener("click", (event) => {
+  clearAttachments(document.querySelector("#todoForm"));
+});
+
 function addTodoItem(todoItem) {
   // Add the new todo item to the in-memory list
   todoItems.push(todoItem);
@@ -88,6 +93,11 @@ function editTodoItem(todoItem) {
   editForm.querySelector(".attachments").addEventListener("change", event => {
     updateAttachmentList(event.target.files, editForm);
   });
+  // Handle clear attachments button
+  editForm.querySelector(".clearAttachments").addEventListener("click", (event) => {
+    clearAttachments(editForm);
+    todoItem.attachments = [];
+  });
   // Handle form submission to update the todo item
   editForm.addEventListener("submit", event => {
     event.preventDefault();
@@ -115,3 +125,7 @@ function updateAttachmentList(fileList, form) {
   }
 }
 
+function clearAttachments(form) {
+  form.querySelector(".attachments").value = "";
+  form.querySelector(".attachmentList").innerHTML = "";
+}
